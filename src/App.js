@@ -1,7 +1,8 @@
 import React from "react";
+import EmpDirContainer from "./components/EmpDirContainer.js";
 
 function App() {
-  return <h1>Hello World</h1>;
+  return <EmpDirContainer />;
 }
 
 export default App;
