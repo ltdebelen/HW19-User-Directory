@@ -5,6 +5,7 @@ import Row from "./Row";
 import Col from "./Col";
 import Header from "./Header";
 import EmpTable from "./EmpTable";
+import SearchBox from "./SearchBox";
 
 class EmpDirContainer extends Component {
   constructor(props) {
@@ -44,6 +45,11 @@ class EmpDirContainer extends Component {
         <Row>
           <Col size="md-12">
             <Header />
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-4 offset-md-4">
+            <SearchBox />
           </Col>
         </Row>
         <Row>
