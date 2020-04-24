@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 function EmpTable(props) {
   return (
@@ -26,7 +27,7 @@ function EmpTable(props) {
             </td>
             <td>{employee.phone}</td>
             <td>{employee.email}</td>
-            <td>{employee.dob.date}</td>
+            <td>{moment(employee.dob.date).format("MM-DD-YYYY")}</td>
           </tr>
         ))}
       </tbody>
