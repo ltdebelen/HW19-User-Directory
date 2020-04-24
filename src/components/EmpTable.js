@@ -1,13 +1,28 @@
 import React from "react";
 import moment from "moment";
 
+const styles = {
+  button: {
+    padding: "0.0rem 0.2rem",
+  },
+};
+
 function EmpTable(props) {
   return (
     <table className="table">
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col">Name</th>
+          <th scope="col">
+            Name{" "}
+            <button
+              style={styles.button}
+              className="btn-secondary"
+              onClick={props.handleSort}
+            >
+              <i className="fa fa-sort" aria-hidden="true"></i>
+            </button>
+          </th>
           <th scope="col">Phone</th>
           <th scope="col">Email</th>
           <th scope="col">DOB</th>

@@ -7,9 +7,16 @@ import Header from "./Header";
 import EmpTable from "./EmpTable";
 
 class EmpDirContainer extends Component {
-  state = {
-    results: [],
-  };
+  constructor(props) {
+    super(props);
+
+    this.handleSort = this.handleSort.bind(this);
+
+    this.state = {
+      results: [],
+      sort: "desc",
+    };
+  }
 
   componentDidMount() {
     API.search()
@@ -17,8 +24,21 @@ class EmpDirContainer extends Component {
       .catch((err) => console.log(err));
   }
 
+  handleSort() {
+    if (this.state.sort === "desc") {
+      const sorted = this.state.results.sort((a, b) =>
+        a.name.first > b.name.first ? 1 : -1
+      );
+      this.setState({ results: sorted, sort: "asc" });
+    } else if (this.state.sort === "asc") {
+      const sorted = this.state.results.sort((a, b) =>
+        b.name.first > a.name.first ? 1 : -1
+      );
+      this.setState({ results: sorted, sort: "desc" });
+    }
+  }
+
   render() {
-    console.log(this.state.results);
     return (
       <Container>
         <Row>
@@ -28,7 +48,10 @@ class EmpDirContainer extends Component {
         </Row>
         <Row>
           <Col size="md-12">
-            <EmpTable employees={this.state.results} />
+            <EmpTable
+              employees={this.state.results}
+              handleSort={this.handleSort}
+            />
           </Col>
         </Row>
       </Container>
