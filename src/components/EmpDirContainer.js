@@ -14,6 +14,7 @@ class EmpDirContainer extends Component {
     this.handleSort = this.handleSort.bind(this);
 
     this.state = {
+      search: "",
       results: [],
       sort: "desc",
     };
@@ -24,6 +25,24 @@ class EmpDirContainer extends Component {
       .then((res) => this.setState({ results: res.data.results }))
       .catch((err) => console.log(err));
   }
+
+  handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: value,
+    });
+
+    this.setState({ search: value });
+    this.handleFilter(this.state.search);
+  };
+
+  handleFilter = (search) => {
+    const filtered = this.state.results.filter(
+      (emp) => emp.name.first.indexOf(search) !== -1
+    );
+    this.setState({ results: filtered });
+  };
 
   handleSort() {
     if (this.state.sort === "desc") {
@@ -49,7 +68,7 @@ class EmpDirContainer extends Component {
         </Row>
         <Row>
           <Col size="md-4 offset-md-4">
-            <SearchBox />
+            <SearchBox handleInputChange={this.handleInputChange} />
           </Col>
         </Row>
         <Row>

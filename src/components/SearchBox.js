@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchBox() {
+function SearchBox(props) {
   return (
     <div className="input-group mb-3">
       <div className="input-group-prepend">
@@ -9,7 +9,10 @@ function SearchBox() {
         </span>
       </div>
       <input
+        onChange={props.handleInputChange}
+        value={props.value}
         type="text"
+        name="search"
         className="form-control"
         placeholder="Search for employee..."
         aria-label="Username"
