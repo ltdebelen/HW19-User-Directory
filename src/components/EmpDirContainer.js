@@ -34,14 +34,6 @@ class EmpDirContainer extends Component {
     });
 
     this.setState({ search: value });
-    this.handleFilter(this.state.search);
-  };
-
-  handleFilter = (search) => {
-    const filtered = this.state.results.filter(
-      (emp) => emp.name.first.indexOf(search) !== -1
-    );
-    this.setState({ results: filtered });
   };
 
   handleSort() {
@@ -59,6 +51,12 @@ class EmpDirContainer extends Component {
   }
 
   render() {
+    const { search } = this.state;
+
+    const filteredEmployees = this.state.results.filter((emp) => {
+      return emp.name.first.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    });
+
     return (
       <Container>
         <Row>
@@ -74,7 +72,7 @@ class EmpDirContainer extends Component {
         <Row>
           <Col size="md-12">
             <EmpTable
-              employees={this.state.results}
+              employees={filteredEmployees}
               handleSort={this.handleSort}
             />
           </Col>
